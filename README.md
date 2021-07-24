@@ -18,3 +18,15 @@ To send an image and get the app to work open a link as follows:
 http://0.0.0.0:8000/?url=<image_url>
 for example:
 http://0.0.0.0:8000/?url=https://imgs.xkcd.com/comics/bad_code.png
+
+# Build the docker image
+
+`docker build --tag data_augmentation_test .`
+or
+`make build`
+
+# Run the image
+
+`docker run -p 8000:8000 data_augmentation_test`
+or
+`make run`
