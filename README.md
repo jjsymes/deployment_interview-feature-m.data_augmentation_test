@@ -44,6 +44,7 @@ To run tests, run the following in the root directory of the project: `python3 -
 # Deploy the container on Azure
 
 The repo contains the infrastucture code to deploy container using Azure App Service.
-To create the required infrastructure, login to an azure account using `az login`, and run `make apply` on the top level project directory. or run `terraform apply` in the infrastructure directory.
+To create the required infrastructure, login to an azure account using `az login`, and run `make apply` on the top level project directory. or run `terraform apply` in the infrastructure directory. 
+Test the deployment with `make smoke_test`
 
 It is currently deployed to https://data-augmentation-test-dockerapp.azurewebsites.net/. Try, for example: https://data-augmentation-test-dockerapp.azurewebsites.net/?url=https://imgs.xkcd.com/comics/bad_code.png

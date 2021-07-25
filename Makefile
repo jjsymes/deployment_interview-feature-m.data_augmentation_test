@@ -1,5 +1,6 @@
 IMAGE_TAG=data_augmentation_test
 PATH_TO_INFRASTRUCTURE_FILES=infrastructure
+WORKING_DIR=working
 
 .DEFAULT_GOAL := help
 .PHONY: help
@@ -43,4 +44,8 @@ destroy: init # terraform destroy
 
 output: init # terraform output
 	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
-	terraform output
+	mkdir -p $(WORKING_DIR) && \
+	terraform output --json > $(WORKING_DIR)/tfoutput.json
+
+smoke_test: output # test deployment of app infrastructure
+	curl -Is -K HEAD $(shell cat $(PATH_TO_INFRASTRUCTURE_FILES)/$(WORKING_DIR)/tfoutput.json | jq -r '.["default_site_hostname"] .value')/?url=https://imgs.xkcd.com/comics/bad_code.png
