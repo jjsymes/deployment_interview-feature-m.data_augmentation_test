@@ -21,13 +21,13 @@ http://0.0.0.0:8000/?url=https://imgs.xkcd.com/comics/bad_code.png
 
 # Build the docker image
 
-`docker build --tag data_augmentation_test .`
+Run: `docker build --tag data_augmentation_test .`
 or
 `make build`
 
 # Run the image
 
-`docker run -p 8000:8000 data_augmentation_test`
+Run: `docker run -p 8000:8000 data_augmentation_test`
 or
 `make run`
 
@@ -43,8 +43,10 @@ To run tests, run the following in the root directory of the project: `python3 -
 
 # Deploy the container on Azure
 
-The repo contains the infrastucture code to deploy container using Azure App Service.
-To create the required infrastructure, login to an azure account using `az login`, and run `make apply` on the top level project directory. or run `terraform apply` in the infrastructure directory. 
-Test the deployment with `make smoke_test`
+The repo contains the infrastucture code to deploy the container built by github actions onto Azure App Service.
+
+To create the required infrastructure, login to an azure account using `az login`, and run `make apply` on the top level project directory. or run `terraform apply` in the infrastructure directory.
+
+Test the deployment with `make smoke_test`. This tests that there is a http response from the app service.
 
 It is currently deployed to https://data-augmentation-test-dockerapp.azurewebsites.net/. Try, for example: https://data-augmentation-test-dockerapp.azurewebsites.net/?url=https://imgs.xkcd.com/comics/bad_code.png
