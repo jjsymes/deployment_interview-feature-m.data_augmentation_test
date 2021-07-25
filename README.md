@@ -33,6 +33,10 @@ or
 
 # Testing
 
+Run `make test`
+
+or alternatively
+
 Install pytest: `pip3 install pytest --user`
 Install application dependencies: `pip3 install --user -r requirements.txt`
 To run tests, run the following in the root directory of the project: `python3 -m pytest`

@@ -7,6 +7,12 @@ PATH_TO_INFRASTRUCTURE_FILES=infrastructure
 help: # print make targets
 	@LC_ALL=C $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
+pip_install: # install depedencies for testing
+	pip3 install --user -r tests/requirements.txt && pip3 install --user -r requirements.txt
+
+test: pip_install # test app
+	python3 -m pytest
+
 build: # build image
 	docker build --tag $(IMAGE_TAG) .
 
@@ -38,4 +44,3 @@ destroy: init # terraform destroy
 output: init # terraform output
 	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
 	terraform output
-	
