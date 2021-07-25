@@ -36,3 +36,10 @@ or
 Install pytest: `pip3 install pytest --user`
 Install application dependencies: `pip3 install --user -r requirements.txt`
 To run tests, run the following in the root directory of the project: `python3 -m pytest`
+
+# Deploy the container on Azure
+
+The repo contains the infrastucture code to deploy container using Azure App Service.
+To create the required infrastructure, login to an azure account using `az login`, and run `make apply` on the top level project directory. or run `terraform apply` in the infrastructure directory.
+
+It is currently deployed to https://data-augmentation-test-dockerapp.azurewebsites.net/. Try, for example: https://data-augmentation-test-dockerapp.azurewebsites.net/?url=https://imgs.xkcd.com/comics/bad_code.png

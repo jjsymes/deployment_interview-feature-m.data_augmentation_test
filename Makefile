@@ -1,4 +1,5 @@
 IMAGE_TAG=data_augmentation_test
+PATH_TO_INFRASTRUCTURE_FILES=infrastructure
 
 .DEFAULT_GOAL := help
 .PHONY: help
@@ -17,3 +18,24 @@ login: # login into running container
 
 prune: # remover stopped containers
 	docker container prune -f
+
+init: # terraform init
+	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
+	terraform init
+
+apply: init # terraform apply
+	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
+	terraform apply
+
+plan: init # terraform plan
+	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
+	terraform plan
+
+destroy: init # terraform destroy
+	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
+	terraform destroy
+
+output: init # terraform output
+	cd $(PATH_TO_INFRASTRUCTURE_FILES) && \
+	terraform output
+	
